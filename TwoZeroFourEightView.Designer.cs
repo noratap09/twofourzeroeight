@@ -48,6 +48,8 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.lab_score = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl00
@@ -267,6 +269,7 @@
             this.btnLeft.Text = "←";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            this.btnLeft.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_control);
             // 
             // btnUp
             // 
@@ -277,6 +280,7 @@
             this.btnUp.Text = "↑";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.btnUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_control);
             // 
             // btnRight
             // 
@@ -287,6 +291,7 @@
             this.btnRight.Text = "→";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            this.btnRight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_control);
             // 
             // btnDown
             // 
@@ -297,12 +302,33 @@
             this.btnDown.Text = "↓";
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            this.btnDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyboard_control);
+            // 
+            // lab_score
+            // 
+            this.lab_score.AutoSize = true;
+            this.lab_score.Location = new System.Drawing.Point(58, 307);
+            this.lab_score.Name = "lab_score";
+            this.lab_score.Size = new System.Drawing.Size(13, 13);
+            this.lab_score.TabIndex = 20;
+            this.lab_score.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 307);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "score : ";
             // 
             // TwoZeroFourEightView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 428);
+            this.ClientSize = new System.Drawing.Size(300, 428);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lab_score);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnUp);
@@ -326,6 +352,7 @@
             this.Name = "TwoZeroFourEightView";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -351,6 +378,8 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Label lab_score;
+        private System.Windows.Forms.Label label1;
     }
 }
 

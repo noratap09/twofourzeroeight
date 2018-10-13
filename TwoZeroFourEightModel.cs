@@ -59,6 +59,7 @@ namespace twozerofoureight
             int[] rangeX = Enumerable.Range(0, boardSize).ToArray();
             int[] rangeY = Enumerable.Range(0, boardSize).ToArray();
             Array.Reverse(rangeY);
+            
             foreach (int i in rangeX)
             {
                 pos = 0;

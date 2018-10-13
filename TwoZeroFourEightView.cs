@@ -14,7 +14,7 @@ namespace twozerofoureight
     {
         Model model;
         Controller controller;
-       
+
         public TwoZeroFourEightView()
         {
             InitializeComponent();
@@ -75,27 +75,163 @@ namespace twozerofoureight
             UpdateTile(lbl31,board[3, 1]);
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
+            this.show_score();
+            if (check_game_over(board))
+            {
+                MessageBox.Show("GAME OVER!");
+            }
+        }
+
+        public bool check_game_over(int[,] board)
+        {
+            for(int i=0;i<4;i++)
+            {
+                for(int j=0;j<4;j++)
+                {
+                    if(j<3 && (board[i,j]==board[i,j+1]))
+                    {
+                        return false;
+                    }
+                    else if(i < 3 && (board[i, j] == board[i+1,j]))
+                    {
+                        return false;
+                    }
+                    else if(board[i,j]==0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public void show_score()
+        {
+            int score = 0;
+            for(int i=0;i<4;i++)
+            {
+                for(int j=0;j<4;j++)
+                {
+                    score += ((TwoZeroFourEightModel)model).GetBoard()[i, j];
+                }
+            }
+            lab_score.Text = score.ToString();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            Left();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+            Right();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            controller.ActionPerformed(TwoZeroFourEightController.UP);
+            Up();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+            Down();
         }
 
+        private void keyboard_control(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar.ToString().ToUpper() == "W")
+            {
+                Up();
+            }
+            else if(e.KeyChar.ToString().ToUpper() == "S")
+            {
+                Down();
+            }
+            else if (e.KeyChar.ToString().ToUpper() == "A")
+            {
+                Left();
+            }
+            else if (e.KeyChar.ToString().ToUpper() == "D")
+            {
+                Right();
+            }
+        }
+
+        private void Left()
+        {
+            bool check = false;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 3; j > 0; j--)
+                {
+                    if (((TwoZeroFourEightModel)model).GetBoard()[i, j] == ((TwoZeroFourEightModel)model).GetBoard()[i, j - 1] || ((TwoZeroFourEightModel)model).GetBoard()[i, j] == 0)
+                    {
+                        check = true;
+                    }
+                }
+            }
+            if (check == true)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            }
+        }
+
+        private void Right()
+        {
+            bool check = false;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (((TwoZeroFourEightModel)model).GetBoard()[i, j] == ((TwoZeroFourEightModel)model).GetBoard()[i, j + 1] || ((TwoZeroFourEightModel)model).GetBoard()[i, j] == 0)
+                    {
+                        check = true;
+                    }
+                }
+            }
+            if (check == true)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+            }
+        }
+
+        private void Up()
+        {
+            bool check = false;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 3; j > 0; j--)
+                {
+                    if (((TwoZeroFourEightModel)model).GetBoard()[j, i] == ((TwoZeroFourEightModel)model).GetBoard()[j - 1, i] || ((TwoZeroFourEightModel)model).GetBoard()[j, i] == 0)
+                    {
+                        check = true;
+                    }
+                }
+            }
+            if (check == true)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.UP);
+            }
+        }
+
+        private void Down()
+        {
+            bool check = false;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (((TwoZeroFourEightModel)model).GetBoard()[j, i] == ((TwoZeroFourEightModel)model).GetBoard()[j + 1, i] || ((TwoZeroFourEightModel)model).GetBoard()[j, i] == 0)
+                    {
+                        check = true;
+                    }
+                }
+            }
+            if (check == true)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+            }
+        }
     }
 }
